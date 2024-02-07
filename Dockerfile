@@ -6,11 +6,9 @@ COPY go.mod /app/go.mod
 COPY main.go /app/main.go
 
 RUN go build -v -o main .
-RUN ls -la
 
-FROM alpine:3.19.1
+FROM scratch
 
 COPY --from=builder /app/ /app/
-RUN chmod +x /app/main
 
 CMD [ "/app/main" ]
